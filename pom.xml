@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.troy</groupId>
+        <artifactId>troy-baseline</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>troy-trade-ws</artifactId>
+    <packaging>pom</packaging>
+
+    <name>troy-trade-ws</name>
+    <modules>
+        <module>troy-trade-ws-api</module>
+        <module>troy-trade-ws-task</module>
+        <module>troy-trade-ws-service</module>
+        <module>troy-trade-ws-provider</module>
+        <module>troy-trade-ws-binance</module>
+        <module>troy-trade-ws-huobi</module>
+        <module>troy-trade-ws-futures-huobi</module>
+        <module>troy-trade-ws-okex</module>
+        <module>troy-trade-ws-futures-okex</module>
+        <module>troy-trade-ws-gateio</module>
+        <module>troy-trade-ws-bitfinex</module>
+        <module>troy-trade-ws-core</module>
+    </modules>
+
+    <properties>
+        <xchange.core.version>4.3.7</xchange.core.version>
+        <xchange.stream.core.version>4.2.0</xchange.stream.core.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.troy</groupId>
+            <artifactId>troy-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.troy</groupId>
+            <artifactId>troy-trade-exchange-commons</artifactId>
+            <version>${troy.version}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>io.reactivex.rxjava2</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>2.0.9</version>
+        </dependency>-->
+    </dependencies>
+
+</project>

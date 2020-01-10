@@ -1,0 +1,11 @@
+troy:
+  task:
+    accessToken:
+    admin:
+      addresses: http://192.168.0.10:9999/troy-task-admin
+    executor:
+      appname: troy-trade-ws-task
+      ip:
+      port: 0
+      logpath: ${logging.path}/xxl-job/jobhandler
+      logretentiondays: -1

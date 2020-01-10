@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<button>请求</button>
+</body>
+</html>
+<script>
+
+    $('button').on('click', function() {
+        $.ajax({
+            url: 'http://192.168.1.91:8092/xxxxx/dddddd/xxxxxs',
+            type: 'post',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+            },
+            data: JSON.stringify({
+                "data":{
+                    "limit":10,
+                    "symbol":"TRX/USD",
+                    "exchCode":"BITFINEX"
+                },
+                "head": {
+                    "clientId":"troy-web",
+                    "timestamp":1567408943518
+                }
+            }),
+        })
+    })
+</script>

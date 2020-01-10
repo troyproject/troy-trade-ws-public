@@ -1,0 +1,20 @@
+package com.troy.streamingexchange.bitfinex.dto.jackson;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.troy.streamingexchange.bitfinex.dto.BitfinexWebSocketUpdateOrderbook;
+
+import java.io.IOException;
+
+public class BitfinexWebSocketUpdateOrderbookDeserializer extends StdDeserializer<BitfinexWebSocketUpdateOrderbook> {
+    protected BitfinexWebSocketUpdateOrderbookDeserializer(Class<?> vc) {
+        super(vc);
+    }
+
+    @Override
+    public BitfinexWebSocketUpdateOrderbook deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+        return null;
+    }
+}

@@ -1,0 +1,65 @@
+server:
+  port: 18010
+  tomcat:
+    maxConnections: 10000
+    maxThreads: 200
+spring:
+  profiles:
+    active: dev
+    include: task-${spring.profiles.active}
+  application:
+    name: troy-trade-ws
+  cloud:
+    config:
+      label: troy-trade-ws
+      profile: web
+      discovery:
+        enabled: true
+        service-id: troy-configurator
+      username: configUser
+      password: configUser
+eureka:
+  client:
+    registerWithEureka: true #默认为true，服务注册中心也会将自己作为客户端来尝试注册自己
+    fetchRegistry: true #默认为true，自动发现
+    registry-fetch-interval-seconds: 5
+logging:
+  path: ./logs #日志文件的相对路径或绝对路径
+
+---
+spring:
+  profiles: dev
+  cloud:
+    config:
+      name: develop-troy-trade-ws
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaUser:eurekaUser@192.168.1.91:8770/eureka/
+---
+# 测试环境
+spring:
+  profiles: test
+  cloud:
+    config:
+      name: test-troy-trade-ws
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaUser:eurekaUser@10.0.0.116:8770/eureka/
+
+---
+# 生产环境
+spring:
+  profiles: prod
+  cloud:
+    config:
+      name: prod-troy-trade-ws
+      username: XXXXXXXXXXX
+      password: XXXXXX
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://XXXXX:XXXXXX@troy-discovery1:8761/eureka/,http://XXXXX:XXXXXX@troy-discovery2:8762/eureka/

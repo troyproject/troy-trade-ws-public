@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>troy-trade-ws</artifactId>
+        <groupId>com.troy</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>troy-trade-ws-task</artifactId>
+
+    <name>troy-trade-ws-task</name>
+
+    <dependencies>
+        <!-- xxl-job-core -->
+        <dependency>
+            <groupId>com.troy</groupId>
+            <artifactId>troy-task-core</artifactId>
+            <version>${troy.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.24.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.troy</groupId>
+            <artifactId>troy-trade-ws-service</artifactId>
+            <version>${troy.version}</version>
+        </dependency>
+    </dependencies>
+</project>

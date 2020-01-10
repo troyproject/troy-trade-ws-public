@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="appName" source="spring.application.name"/>
+    <springProperty scope="context" name="logPath" source="logging.path" defaultValue="./logs"/>
+    <springProperty scope="context" name="rootLevel" source="logging.level.root" defaultValue="INFO"/>
+    <springProperty scope="context" name="consolePattern" source="logging.pattern.console"
+                    defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] %logger{36} - %msg%n"/>
+    <springProperty scope="context" name="filePattern" source="logging.pattern.file"
+                    defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] %logger{36} - %msg%n"/>
+
+    <!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${consolePattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- error and warn 级别日志输出 -->
+    <appender name="errorFileAppender"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>NEUTRAL</onMismatch><!-- 继续到下个过滤器 -->
+        </filter>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${logPath}/error/${appName}-error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${logPath}/error/${appName}-error-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${filePattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 所有级别日志输出 -->
+    <appender name="allFileAppender"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logPath}/all/${appName}-all.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${logPath}/all/${appName}-all-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${filePattern}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${rootLevel}">
+        <appender-ref ref="consoleAppender"/>
+        <appender-ref ref="errorFileAppender"/>
+        <appender-ref ref="allFileAppender"/>
+    </root>
+</configuration>
